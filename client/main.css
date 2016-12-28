@@ -1,0 +1,33 @@
+/* CSS declarations go here */
+
+body {
+  font-family: sans-serif;
+}
+
+.word-grid {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.word {
+  box-sizing: border-box;
+  color: #fba;
+  float: left;
+  padding: 15px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 20%;
+}
+
+.word.red {
+  color: #f30;
+}
+
+.word.blue {
+  color: #24f;
+}
+
+.word.assassin {
+  color: #ddd;
+  font-weight: bold;
+}
