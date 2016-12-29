@@ -1,11 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import Word from './Word.jsx';
+import Game from '../classes/game.js';
 
 export default class WordGrid extends Component {
   renderWords() {
-    return this.props.words.map((obj, i) => (
-      <Word word={obj} assignment={this.props.assignments[i]} />
+    return [...this.props.game.words].map(([string, info]) => (
+      <Word string={string} info={info} handleClick={this.handleWordClick.bind(this)} key={string} />
     ));
+  }
+
+  handleWordClick(wordString) {
+    this.props.game.words.get(wordString).revealed = true;
   }
 
   render() {
@@ -18,6 +23,5 @@ export default class WordGrid extends Component {
 }
 
 WordGrid.propTypes = {
-  words: PropTypes.array.isRequired,
-  assignments: PropTypes.array.isRequired
+  game: PropTypes.instanceOf(Game)
 };
