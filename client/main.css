@@ -1,33 +1,104 @@
 /* CSS declarations go here */
 
+html {
+  font-size: 62.5%;
+}
+
 body {
   font-family: sans-serif;
+  font-size: 1.6rem;
 }
 
 .word-grid {
+  display: flex;
+  flex-wrap: wrap;
   margin: 0 auto;
   max-width: 1200px;
+  perspective: 1200px;
+
+  &:before,
+  &:after {
+    content: ' ';
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.word-container {
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 0 20%;
+  font-size: 1.1rem;
+  height: 20vh;
+  padding: .5vh;
+  width: 20%;
+
+  @media screen and (min-width: 45em) {
+    font-size: 1.4rem;
+    padding: 1vh;
+  }
+
+  @media screen and (min-width: 60em) {
+    font-size: 1.8rem;
+    padding: 2vh;
+  }
 }
 
 .word {
-  box-sizing: border-box;
-  color: #fba;
-  float: left;
-  padding: 15px;
+  background: #999 no-repeat 0 -20vh;
+  background-size: 100%;
+  border-radius: 3px;
+  display: flex;
+  color: #fff;
+  flex-direction: column;
+  justify-content: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: greyscale;
+  font-weight: bold;
+  padding: 0;
   text-align: center;
   text-transform: uppercase;
-  width: 20%;
+  transition: background 1s ease-out;
+  width: 100%;
+  word-wrap: break-word;
+
+  &.bystander,
+  &.red,
+  &.blue,
+  &.assassin {
+    background-position: 0 0;
+  }
+
+  &.bystander {
+    background-image: linear-gradient(#765, #765);
+  }
+
+  &.red {
+    background-image: linear-gradient(#831, #831);
+  }
+
+  &.blue {
+    background-image: linear-gradient(#359, #359);
+  }
+
+  &.assassin {
+    animation: shake .2s linear infinite;
+    background-image: linear-gradient(#222, #222);
+    box-shadow: 0 0 8vh rgba(128, 36, 0, .8) inset;
+    text-shadow: 0 1px 2px #000;
+  }
 }
 
-.word.red {
-  color: #f30;
-}
+@keyframes shake {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
 
-.word.blue {
-  color: #24f;
-}
+  50% {
+    transform: rotate(3deg);
+  }
 
-.word.assassin {
-  color: #ddd;
-  font-weight: bold;
 }
